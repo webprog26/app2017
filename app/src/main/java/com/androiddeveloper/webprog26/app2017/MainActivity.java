@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.androiddeveloper.webprog26.app2017.dagger.App;
-import com.androiddeveloper.webprog26.app2017.dagger.MainPresenterModule;
-import com.androiddeveloper.webprog26.app2017.engine.MainPresenter;
-import com.androiddeveloper.webprog26.app2017.engine.MainView;
+import com.androiddeveloper.webprog26.app2017.dagger.modules.MainPresenterModule;
+import com.androiddeveloper.webprog26.app2017.engine.mvp.presenters.interfaces.MainPresenter;
+import com.androiddeveloper.webprog26.app2017.engine.mvp.views.MainView;
 
 import javax.inject.Inject;
 

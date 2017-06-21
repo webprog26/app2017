@@ -2,6 +2,8 @@ package com.androiddeveloper.webprog26.app2017.dagger;
 
 import android.app.Application;
 
+import com.androiddeveloper.webprog26.app2017.dagger.modules.AppModule;
+
 /**
  * Created by webpr on 21.06.2017.
  */

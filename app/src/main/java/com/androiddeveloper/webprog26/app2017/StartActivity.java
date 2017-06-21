@@ -1,6 +1,5 @@
 package com.androiddeveloper.webprog26.app2017;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +8,9 @@ import android.util.Log;
 
 import com.androiddeveloper.webprog26.app2017.constants.Constants;
 import com.androiddeveloper.webprog26.app2017.dagger.App;
-import com.androiddeveloper.webprog26.app2017.dagger.StartPresenterModule;
-import com.androiddeveloper.webprog26.app2017.engine.StartPresenter;
-import com.androiddeveloper.webprog26.app2017.engine.StartView;
+import com.androiddeveloper.webprog26.app2017.dagger.modules.StartPresenterModule;
+import com.androiddeveloper.webprog26.app2017.engine.mvp.presenters.interfaces.StartPresenter;
+import com.androiddeveloper.webprog26.app2017.engine.mvp.views.StartView;
 
 import javax.inject.Inject;
 

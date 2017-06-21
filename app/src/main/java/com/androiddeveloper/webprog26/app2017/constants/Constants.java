@@ -6,8 +6,8 @@ package com.androiddeveloper.webprog26.app2017.constants;
 
 public class Constants {
 
-    public static String CONSUMER_KEY = "PuYHyNxQyRXGZrHttzn56qCUh";
-    public static String CONSUMER_SECRET = "hSgNV3cMPhrPF1LROhw69WU6JxUTtHqwEEWAKDsLYsB6YubDQt";
+    public static String CONSUMER_KEY = "your_consumer_key";
+    public static String CONSUMER_SECRET = "your_consumer_secret";
 
     public static String PREFERENCE_NAME = "twitter_oauth";
     public static final String PREF_KEY_SECRET = "oauth_token_secret";

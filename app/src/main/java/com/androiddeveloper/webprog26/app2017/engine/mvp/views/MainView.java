@@ -13,4 +13,8 @@ public interface MainView {
     SharedPreferences getSharedPreferences();
 
     void backToStartActivity();
+
+    void setControls();
+
+    void setTitle(String title);
 }

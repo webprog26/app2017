@@ -3,4 +3,9 @@
 
     <string name="log_in">Log in</string>
     <string name="log_out">Log out</string>
+
+    <string name="timeline">Timeline</string>
+    <string name="profile">Profile</string>
+    <string name="map">Map</string>
+    <string name="android">Android</string>
 </resources>

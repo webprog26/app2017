@@ -1,6 +1,7 @@
 package com.androiddeveloper.webprog26.app2017.engine.mvp.presenters.implementations;
 
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import com.androiddeveloper.webprog26.app2017.constants.Constants;
 import com.androiddeveloper.webprog26.app2017.engine.mvp.presenters.interfaces.MainPresenter;
@@ -21,9 +22,8 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void askLogout() {
-        SharedPreferences sharedPreferences = getMainView().getSharedPreferences();
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = getEditor();
 
         editor.remove(Constants.PREF_KEY_TOKEN);
         editor.remove(Constants.PREF_KEY_SECRET);
@@ -32,6 +32,34 @@ public class MainPresenterImpl implements MainPresenter {
         editor.apply();
 
         getMainView().backToStartActivity();
+    }
+
+    @Override
+    public void changeTimelineModeToDetailed() {
+
+    }
+
+    @Override
+    public void changeTimelineModeToDefault() {
+
+
+
+    }
+
+    @Override
+    public int getTimelineMode() {
+        return getMainView().getSharedPreferences().getInt(Constants.TIMELINE_MODE_TAG, Constants.TIMELINE_MODE_DEFAULT);
+    }
+
+    @Override
+    @NonNull
+    public SharedPreferences.Editor getEditor() {
+        return getMainView().getSharedPreferences().edit();
+    }
+
+    @Override
+    public void saveTimeLineMode(int timeLineMode) {
+        getEditor().putInt(Constants.TIMELINE_MODE_TAG, timeLineMode).apply();
     }
 
     private MainView getMainView() {

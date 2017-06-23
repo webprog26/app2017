@@ -1,6 +1,6 @@
 package com.androiddeveloper.webprog26.app2017.engine.view_pager_adapter;
 
-import android.support.v4.app.Fragment;
+import com.androiddeveloper.webprog26.app2017.engine.fragments.BaseFragment;
 
 /**
  * Created by webpr on 22.06.2017.
@@ -8,5 +8,5 @@ import android.support.v4.app.Fragment;
 
 public interface FragmentsAppender {
 
-    void append(Fragment fragment, String title);
+    void append(BaseFragment fragment, String title);
 }

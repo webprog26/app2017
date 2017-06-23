@@ -17,6 +17,13 @@ public class AppViewPagerListener extends ViewPagerListener {
     @Override
     public void onPageSelected(int position) {
         super.onPageSelected(position);
+
+        if(position == 0){
+            mViewPagerAdapter.changeControlsVisibility(true);
+        } else {
+            mViewPagerAdapter.changeControlsVisibility(false);
+        }
+
         mViewPagerAdapter.notifyTitleChanged(position);
     }
 }

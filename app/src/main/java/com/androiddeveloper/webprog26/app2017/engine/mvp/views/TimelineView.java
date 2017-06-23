@@ -4,17 +4,13 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 /**
- * Created by webpr on 21.06.2017.
+ * Created by webpr on 22.06.2017.
  */
 
-public interface MainView {
+public interface TimelineView {
 
     @NonNull
     SharedPreferences getSharedPreferences();
-
-    void backToStartActivity();
-
-    void setControls(boolean state);
-
-    void setTitle(String title);
+    void registerEventsHandler();
+    void unregisterEventsHandler();
 }

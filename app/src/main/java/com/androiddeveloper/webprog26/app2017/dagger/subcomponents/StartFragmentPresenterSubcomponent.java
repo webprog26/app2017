@@ -14,5 +14,4 @@ import dagger.Subcomponent;
 public interface StartFragmentPresenterSubcomponent {
 
     void inject(StartFragment target);
-//    void inject(StartFragmentPresenterImpl target);
 }

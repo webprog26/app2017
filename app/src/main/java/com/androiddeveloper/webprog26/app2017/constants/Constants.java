@@ -21,4 +21,10 @@ public class Constants {
     public static final String IS_LOGGED_IN = "is_logged_in";
 
     public static final String CALLBACK_URL = "oauth://t4jsample";
+
+    public static final String TIMELINE_MODE_TAG = "timeline_mode_tag";
+    public static final int TIMELINE_MODE_DEFAULT = 0;
+    public static final int TIMELINE_MODE_DETAILED = 1;
+
+    public static final String MEDIA_ENTITY_TYPE_PHOTO = "photo";
 }

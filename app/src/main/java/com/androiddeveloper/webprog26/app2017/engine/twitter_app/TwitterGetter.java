@@ -20,5 +20,4 @@ public interface TwitterGetter {
     RequestToken getRequestToken();
 
     void setRequestToken(RequestToken mRequestToken);
-
 }

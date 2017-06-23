@@ -8,7 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.androiddeveloper.webprog26.app2017.dagger.App;
@@ -18,6 +19,7 @@ import com.androiddeveloper.webprog26.app2017.engine.fragments.view_pager_fragme
 import com.androiddeveloper.webprog26.app2017.engine.fragments.view_pager_fragments.ProfileFragment;
 import com.androiddeveloper.webprog26.app2017.engine.fragments.view_pager_fragments.TimelineFragment;
 import com.androiddeveloper.webprog26.app2017.engine.listeners.AppViewPagerListener;
+import com.androiddeveloper.webprog26.app2017.engine.listeners.TimelineModeClickListener;
 import com.androiddeveloper.webprog26.app2017.engine.mvp.presenters.interfaces.MainPresenter;
 import com.androiddeveloper.webprog26.app2017.engine.mvp.views.MainView;
 import com.androiddeveloper.webprog26.app2017.engine.view_pager_adapter.ViewPagerAdapter;
@@ -30,6 +32,20 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements MainView{
 
     private static final String TAG = "MainActivity_TAG";
+
+    private final int[] tabsIconsDrawablesIndices = new int[]{
+        R.drawable.ic_list_white_24dp,
+        R.drawable.ic_person_white_24dp,
+        R.drawable.ic_place_white_24dp,
+        R.drawable.ic_android_white_24dp
+    };
+
+    private final int[] pagesTitlesIndices = new int[]{
+            R.string.timeline,
+            R.string.profile,
+            R.string.map,
+            R.string.android
+    };
 
     @Inject
     MainPresenter mainPresenter;
@@ -49,11 +65,16 @@ public class MainActivity extends BaseActivity implements MainView{
     @BindView(R.id.tv_page_title)
     TextView mTvPageTitle;
 
+    @BindView(R.id.ib_timeline_mode)
+    ImageButton mIbTimelineMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        mainPresenter.setView(this);
 
         setupViewPager();
 
@@ -68,6 +89,8 @@ public class MainActivity extends BaseActivity implements MainView{
         initTabLayoutWithTabs();
 
         mViewPagerAdapter.notifyTitleChanged(getTabLayout().getSelectedTabPosition());
+
+        getIbTimelineMode().setOnClickListener(new TimelineModeClickListener(mainPresenter, getResources()));
     }
 
     @Override
@@ -89,17 +112,13 @@ public class MainActivity extends BaseActivity implements MainView{
     }
 
     @Override
-    public void setControls() {
-
+    public void setControls(boolean state) {
+        getIbTimelineMode().setVisibility(state ? View.VISIBLE: View.GONE);
     }
 
     @Override
     public void setTitle(String title) {
-        if(title != null){
-            Log.i(TAG, "title " + title);
-        } else {
-            Log.i(TAG, "title is null");
-        }
+        
         getTvPageTitle().setText(title);
     }
 
@@ -120,10 +139,10 @@ public class MainActivity extends BaseActivity implements MainView{
 
         adapter.subscribe(this);
 
-        adapter.append(new TimelineFragment(), getString(R.string.timeline));
-        adapter.append(new ProfileFragment(), getString(R.string.profile));
-        adapter.append(new MapFragment(), getString(R.string.map));
-        adapter.append(new AndroidFragment(), getString(R.string.android));
+        adapter.append(new TimelineFragment(), getString(pagesTitlesIndices[0]));
+        adapter.append(new ProfileFragment(), getString(pagesTitlesIndices[1]));
+        adapter.append(new MapFragment(), getString(pagesTitlesIndices[2]));
+        adapter.append(new AndroidFragment(), getString(pagesTitlesIndices[3]));
 
         getViewPager().setAdapter(adapter);
     }
@@ -131,10 +150,10 @@ public class MainActivity extends BaseActivity implements MainView{
     private void initTabLayoutWithTabs(){
         TabLayout tabLayout = getTabLayout();
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_white_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_person_white_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_place_white_24dp);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_android_white_24dp);
+        tabLayout.getTabAt(0).setIcon(tabsIconsDrawablesIndices[0]);
+        tabLayout.getTabAt(1).setIcon(tabsIconsDrawablesIndices[1]);
+        tabLayout.getTabAt(2).setIcon(tabsIconsDrawablesIndices[2]);
+        tabLayout.getTabAt(3).setIcon(tabsIconsDrawablesIndices[3]);
     }
 
     private ViewPagerAdapter getViewPagerAdapter() {
@@ -143,5 +162,9 @@ public class MainActivity extends BaseActivity implements MainView{
 
     private TextView getTvPageTitle() {
         return mTvPageTitle;
+    }
+
+    private ImageButton getIbTimelineMode() {
+        return mIbTimelineMode;
     }
 }
